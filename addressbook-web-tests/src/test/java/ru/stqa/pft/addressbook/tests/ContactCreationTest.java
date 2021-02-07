@@ -1,9 +1,8 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
-import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactCreationTest extends TestBase {
   private WebDriver wd;
@@ -14,10 +13,8 @@ public class ContactCreationTest extends TestBase {
     fillContactForm(new ContactData("Liza", "Gurova", "Street", "1234", "12@er.ry"));
     submitContactCreation();
     returnToContactPage();
-    logout();
+    app.logout();
   }
-
-
 
   private void returnToContactPage() {
     wd.findElement(By.linkText("home page")).click();
@@ -47,11 +44,6 @@ public class ContactCreationTest extends TestBase {
 
   private void initContactCreation() {
     wd.findElement(By.linkText("add new")).click();
-  }
-
-  @AfterMethod(alwaysRun = true)
-  public void tearDown() throws Exception {
-    wd.quit();
   }
 
   private boolean isElementPresent(By by) {
