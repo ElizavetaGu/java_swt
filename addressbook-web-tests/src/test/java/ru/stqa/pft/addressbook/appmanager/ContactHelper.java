@@ -20,15 +20,18 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
+    //второй элемент - форма зполняется при создании (true) или при модификации (false)
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
+        //если при создании, проверяет, есть ли список с группами
         if (creation){
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
+            //если при модификации, проверяет, что списка с группами нет
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
     }
