@@ -32,8 +32,10 @@ public class GroupHelper extends HelperBase {
         click(By.name("delete"));
     }
 
-    public void selectGroups() {
-        click(By.name("selected[]"));
+    public void selectGroups(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click(); //get - метод интерфейса List, который возвращет
+        //элемент списка по индексу
+        //click(By.name("selected[]"));
         //click(By.xpath("(//input[@name='selected[]'])[1]"));
     }
 
