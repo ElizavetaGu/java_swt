@@ -72,6 +72,7 @@ public class GroupHelper extends HelperBase {
         //которые имеют тег span и класс group
         for (WebElement element : elements){
             String name = element.getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             GroupData group = new GroupData(name, null, null);
             groups.add(group);
         }
