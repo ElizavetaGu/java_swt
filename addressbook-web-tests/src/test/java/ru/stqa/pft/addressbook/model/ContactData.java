@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class ContactData {
     private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String address;
-    private final String mobilePhone;
-    private final String email;
-    private final String group;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String mobilePhone;
+    private String email;
+    private String group;
 
     public ContactData(int id, String firstName, String lastName, String address, String mobilePhone, String email, String group) {
         this.id = id;
