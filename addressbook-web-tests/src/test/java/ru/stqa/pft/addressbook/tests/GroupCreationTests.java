@@ -17,9 +17,9 @@ public class GroupCreationTests extends TestBase {
     GroupData group = new GroupData().withName("test14");
     app.group().create(group);
     //int after = app.getGroupHelper().getGroupCount();
+    assertThat(app.group().count(), equalTo(before.size() + 1));
     Groups after = app.group().all();
     //Assert.assertEquals(after.size(), before.size() + 1);
-    assertThat(after.size(), equalTo(before.size() + 1));
 
     //group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     //список првращается в поток; по потоку пробегает функция сравнения и находит максимальный элемент
@@ -36,5 +36,16 @@ public class GroupCreationTests extends TestBase {
     //Assert.assertEquals(before, after);
     assertThat(after, equalTo(
             before.withAdded(group.withID(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+  }
+
+  @Test
+  public void testBadGroupCreation() {
+    app.goTo().groupPage();
+    Groups before = app.group().all();
+    GroupData group = new GroupData().withName("test'");
+    app.group().create(group);
+    assertThat(app.group().count(), equalTo(before.size()));
+    Groups after = app.group().all();
+    assertThat(after, equalTo(before));
   }
 }
