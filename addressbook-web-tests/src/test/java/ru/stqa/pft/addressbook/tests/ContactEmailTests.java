@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTests extends TestBase{
+public class ContactEmailTests extends TestBase{
 
     @BeforeMethod
     public void ensurePreconditions(){
@@ -18,28 +18,27 @@ public class ContactPhoneTests extends TestBase{
         if (app.contact().all().size() == 0){
             app.contact().create(new ContactData().withFirstName("Liza").withLastName("Gurova").withAddress("Street")
                     .withEmail("12@er.ry").withEmail2("12@er.com").withEmail3("126@ererr.ry")
-                    .withMobilePhone("+(123)6789674").withHomePhone("123-43435-234").withWorkPhone("123 435 234")
-                    .withGroup("test14"), true);
+                    .withMobilePhone("1234").withGroup("test14"), true);
         }
     }
 
     @Test
-    public void testContactPhones(){
+    public void testContactEmails(){
         app.goTo().homePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
     }
 
-    private String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> ! s.equals(""))
-                .map(ContactPhoneTests::cleaned)
+                .map(ContactEmailTests::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
-    public static String cleaned(String phone){
-        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    public static String cleaned(String email){
+        return email.replaceAll("\\s", "");
     }
 }
