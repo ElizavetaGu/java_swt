@@ -10,6 +10,8 @@ public class ContactData {
     private String mobilePhone;
     private String email;
     private String group;
+    private String homePhone;
+    private String workPhone;
 
     public int getId() {
         return id;
@@ -29,6 +31,14 @@ public class ContactData {
 
     public String getMobilePhone() {
         return mobilePhone;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
     }
 
     public String getEmail() {
@@ -71,6 +81,14 @@ public class ContactData {
         this.group = group;
         return this;
     }
+    public ContactData withHomePhone(String home) {
+        this.homePhone = home;
+        return this;
+    }
+    public ContactData withWorkPhone(String work) {
+        this.workPhone = work;
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -93,5 +111,6 @@ public class ContactData {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName);
     }
+
 }
 
