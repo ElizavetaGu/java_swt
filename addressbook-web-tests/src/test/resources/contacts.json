@@ -1,0 +1,26 @@
+[
+  {
+    "firstName": "Name 0",
+    "lastName": "Surname 0",
+    "address": "Address 0",
+    "mobilePhone": "12345 0",
+    "email": "qwert@ty.ru0",
+    "group": "test14"
+  },
+  {
+    "firstName": "Name 1",
+    "lastName": "Surname 1",
+    "address": "Address 1",
+    "mobilePhone": "12345 1",
+    "email": "qwert@ty.ru1",
+    "group": "test14"
+  },
+  {
+    "firstName": "Name 2",
+    "lastName": "Surname 2",
+    "address": "Address 2",
+    "mobilePhone": "12345 2",
+    "email": "qwert@ty.ru2",
+    "group": "test14"
+  }
+]
