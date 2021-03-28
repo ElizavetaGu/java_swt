@@ -22,6 +22,7 @@ public class ApplicationManager {
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private String browser;
+    private DbHelper dbHelper;
 
     //конструктор с параметром, при создании экземпляра класса в параметре указывается то значение,
     //которое присваивается в поле/аттрибут
@@ -35,6 +36,9 @@ public class ApplicationManager {
         //String browser = BrowserType.FIREFOX;
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+        dbHelper = new DbHelper();
+
         if (browser.equals(BrowserType.FIREFOX)){
             wd = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)){
@@ -50,7 +54,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         sessionHelper.login(properties.getProperty("web.adminLogin"),
                 properties.getProperty("web.adminPassword"));
-    }
+        }
 
     public void stop() {
         sessionHelper.logout();
@@ -68,4 +72,6 @@ public class ApplicationManager {
     public NavigationHelper goTo() {
         return navigationHelper;
     }
+
+    public DbHelper db() {return dbHelper;}
 }

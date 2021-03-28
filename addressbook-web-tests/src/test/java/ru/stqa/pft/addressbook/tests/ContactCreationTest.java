@@ -55,12 +55,12 @@ public class ContactCreationTest extends TestBase {
   @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
     app.goTo().homePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     //File photo = new File("src/test/resources/tiare.jpg"); //относительный путь
     //ContactData contact = new ContactData().withFirstName("Liza").withLastName("Gurova").withAddress("Street")
             //.withEmail("12@er.ry").withMobilePhone("1234").withGroup("test14").withPhoto(photo);
     app.contact().create(contact, true);
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     //анонимная функция, которая принимает контакт в качестве параметра и возвращает индентификатор контакта
